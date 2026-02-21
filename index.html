@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Sakinn Stays | Luxury Homestay in Manali</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,16 +15,17 @@ margin:0;
 font-family:'Montserrat',sans-serif;
 background:#f6f1e8;
 color:#2c2a28;
+overflow-x:hidden;
 }
 
 .hero{
 position:relative;
 height:100vh;
+overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-overflow:hidden;
 }
 
 .hero video{
@@ -50,7 +52,7 @@ color:white;
 
 .hero h1{
 font-family:'Playfair Display',serif;
-font-size:60px;
+font-size:64px;
 margin:0;
 }
 
@@ -65,25 +67,27 @@ margin-top:20px;
 padding:16px 42px;
 border-radius:50px;
 text-decoration:none;
+font-weight:500;
+transition:0.3s;
 background:#b76e79;
 color:white;
-transition:0.3s;
 }
 
 .btn:hover{
 background:#9d5c66;
+transform:scale(1.05);
 }
 
 .section{
 max-width:1000px;
 margin:auto;
-padding:100px 20px;
+padding:120px 20px;
 text-align:center;
 }
 
 .section h2{
 font-family:'Playfair Display',serif;
-font-size:40px;
+font-size:42px;
 margin-bottom:20px;
 }
 
@@ -98,8 +102,12 @@ box-shadow:0 10px 30px rgba(0,0,0,0.08);
 .address{
 background:#2c2a28;
 color:white;
-padding:60px 20px;
+padding:70px 20px;
 text-align:center;
+}
+
+@media(max-width:768px){
+.hero h1{font-size:38px;}
 }
 
 </style>
@@ -117,13 +125,14 @@ text-align:center;
 <h1>Sakinn Stays</h1>
 <p>Luxury Mountain Living in Manali</p>
 
-<!-- REPLACE THIS WITH YOUR REAL SSUP LINK -->
-<a href="YOUR_REAL_SSUP_LINK_HERE" target="_blank" class="btn">
+<!-- WHATSAPP BOOKING BUTTON -->
+<a href="https://wa.me/917300598065?text=Hi%20I%20would%20like%20to%20book%20a%20stay%20at%20Sakinn%20Stays" target="_blank" class="btn">
 Book Direct & Save 20%
 </a>
 
 <br>
 
+<!-- AIRBNB -->
 <a href="https://www.airbnb.co.in/p/sakinnstays" target="_blank" class="btn">
 View on Airbnb
 </a>
@@ -141,7 +150,7 @@ Explore Cottages
 <h2>Our Philosophy</h2>
 <p>
 A boutique sanctuary designed for stillness, warmth and refined comfort.
-Experience elevated Himalayan living surrounded by breathtaking views.
+Experience elevated Himalayan living surrounded by breathtaking Himalayan landscapes.
 </p>
 </section>
 
@@ -149,11 +158,11 @@ Experience elevated Himalayan living surrounded by breathtaking views.
 <h2>Guest Reviews</h2>
 
 <div class="review-box">
-<p>"The best mountain stay experience. Warm hospitality and breathtaking views."</p>
+<p>"The most peaceful stay in Manali. Stunning snow views and beautiful interiors."</p>
 </div>
 
 <div class="review-box">
-<p>"Beautiful cottages, peaceful vibes, perfect workation spot."</p>
+<p>"Perfect workation destination with strong WiFi and cozy ambiance."</p>
 </div>
 
 </section>
