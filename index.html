@@ -4,7 +4,6 @@
     <title>Sakinn Stays | Luxury Homestay in Manali</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Luxury Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
@@ -21,7 +20,6 @@
             letter-spacing: 1px;
         }
 
-        /* Hero Section */
         .hero {
             background: url('hero.jpg') no-repeat center center/cover;
             height: 100vh;
@@ -65,7 +63,6 @@
             background: #9d5c66;
         }
 
-        /* Sections */
         .section {
             max-width: 1100px;
             margin: auto;
@@ -77,10 +74,8 @@
             max-width: 700px;
             margin: 20px auto 0;
             line-height: 1.8;
-            font-size: 16px;
         }
 
-        /* Properties */
         .properties {
             display: flex;
             flex-wrap: wrap;
@@ -90,9 +85,9 @@
         }
 
         .card {
-            width: 320px;
+            width: 300px;
             background: white;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             transition: transform 0.3s ease;
@@ -104,7 +99,7 @@
 
         .card img {
             width: 100%;
-            height: 240px;
+            height: 220px;
             object-fit: cover;
         }
 
@@ -112,12 +107,16 @@
             padding: 25px;
         }
 
+        .features-list {
+            margin-top: 40px;
+            line-height: 2;
+        }
+
         footer {
             background: #2c2a28;
             color: white;
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
-            margin-top: 60px;
         }
 
         @media(max-width:768px){
@@ -130,252 +129,130 @@
 
 <body>
 
-    <!-- Hero -->
-    <div class="hero">
-        <div class="hero-content">
-            <h1>Sakinn Stays</h1>
-            <p>Luxury mountain escapes in the heart of Manali.</p>
-            <a href="#properties" class="btn">Explore Stays</a>
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>Sakinn Stays</h1>
+        <p>Luxury mountain escapes in the heart of Manali.</p>
+        <a href="#experiences" class="btn">Explore Experiences</a>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+    <h2>Our Philosophy</h2>
+    <p>
+        A sanctuary designed for stillness, warmth and refined comfort.
+        Sakinn Stays offers thoughtfully curated spaces surrounded by
+        breathtaking Himalayan landscapes.
+    </p>
+</div>
+
+<!-- STAY EXPERIENCES -->
+<div class="section" id="experiences">
+    <h2>Our Stay Experiences</h2>
+
+    <div class="properties">
+
+        <div class="card">
+            <img src="dorm.jpg">
+            <div class="card-content">
+                <h3>Dorms</h3>
+                <p>Affordable yet aesthetic shared stays for solo travelers and backpackers.</p>
+            </div>
         </div>
-    </div>
 
-    <!-- About -->
-    <div class="section">
-        <h2>Our Philosophy</h2>
-        <p>
-            A sanctuary designed for stillness, warmth and refined comfort. 
-            Sakinn Stays offers thoughtfully curated spaces surrounded by 
-            breathtaking Himalayan landscapes.
-        </p>
-    </div>
-
-    <!-- Properties -->
-    <div class="section" id="properties">
-        <h2>Our Stays</h2>
-
-        <div class="properties">
-
-            <div class="card">
-                <img src="cottage1.jpg">
-                <div class="card-content">
-                    <h3>A-Shape Cottage</h3>
-                    <p>Cozy alpine architecture with panoramic mountain views.</p>
-                </div>
+        <div class="card">
+            <img src="cottage.jpg">
+            <div class="card-content">
+                <h3>Cottages</h3>
+                <p>Private luxury cottages with breathtaking Himalayan views.</p>
             </div>
-
-            <div class="card">
-                <img src="patio.jpg">
-                <div class="card-content">
-                    <h3>Snow Heaven Patio</h3>
-                    <p>An intimate retreat framed by pine forests and snowfall.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="2bhk.jpg">
-                <div class="card-content">
-                    <h3>Luxury 2BHK Cottage</h3>
-                    <p>Spacious elegance crafted for families and soulful gatherings.</p>
-                </div>
-            </div>
-
         </div>
-    </div>
 
-    <!-- Footer -->
-    <footer>
-        © 2026 Sakinn Stays · Manali · Experience Elevated Living
-    </footer>
-
-</body>
-</html><!DOCTYPE html>
-<html>
-<head>
-    <title>Sakinn Stays | Luxury Homestay in Manali</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Luxury Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
-    <style>
-
-        body {
-            margin: 0;
-            background-color: #f5efe6;
-            font-family: 'Montserrat', sans-serif;
-            color: #2c2a28;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 1px;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: url('hero.jpg') no-repeat center center/cover;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.35);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 60px;
-            margin: 0;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 14px 32px;
-            background: #b76e79;
-            color: white;
-            text-decoration: none;
-            border-radius: 40px;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #9d5c66;
-        }
-
-        /* Sections */
-        .section {
-            max-width: 1100px;
-            margin: auto;
-            padding: 100px 20px;
-            text-align: center;
-        }
-
-        .section p {
-            max-width: 700px;
-            margin: 20px auto 0;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-        /* Properties */
-        .properties {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .card {
-            width: 320px;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-        }
-
-        .card img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 25px;
-        }
-
-        footer {
-            background: #2c2a28;
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        @media(max-width:768px){
-            .hero h1 { font-size: 36px; }
-            .properties { flex-direction: column; align-items: center; }
-        }
-
-    </style>
-</head>
-
-<body>
-
-    <!-- Hero -->
-    <div class="hero">
-        <div class="hero-content">
-            <h1>Sakinn Stays</h1>
-            <p>Luxury mountain escapes in the heart of Manali.</p>
-            <a href="#properties" class="btn">Explore Stays</a>
+        <div class="card">
+            <img src="workation.jpg">
+            <div class="card-content">
+                <h3>Workation</h3>
+                <p>High-speed WiFi, serene landscapes and peaceful work environments.</p>
+            </div>
         </div>
-    </div>
 
-    <!-- About -->
-    <div class="section">
-        <h2>Our Philosophy</h2>
-        <p>
-            A sanctuary designed for stillness, warmth and refined comfort. 
-            Sakinn Stays offers thoughtfully curated spaces surrounded by 
-            breathtaking Himalayan landscapes.
-        </p>
-    </div>
-
-    <!-- Properties -->
-    <div class="section" id="properties">
-        <h2>Our Stays</h2>
-
-        <div class="properties">
-
-            <div class="card">
-                <img src="cottage1.jpg">
-                <div class="card-content">
-                    <h3>A-Shape Cottage</h3>
-                    <p>Cozy alpine architecture with panoramic mountain views.</p>
-                </div>
+        <div class="card">
+            <img src="longstay.jpg">
+            <div class="card-content">
+                <h3>Long Stays</h3>
+                <p>Comfortable extended stays designed for slow mountain living.</p>
             </div>
-
-            <div class="card">
-                <img src="patio.jpg">
-                <div class="card-content">
-                    <h3>Snow Heaven Patio</h3>
-                    <p>An intimate retreat framed by pine forests and snowfall.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="2bhk.jpg">
-                <div class="card-content">
-                    <h3>Luxury 2BHK Cottage</h3>
-                    <p>Spacious elegance crafted for families and soulful gatherings.</p>
-                </div>
-            </div>
-
         </div>
-    </div>
 
-    <!-- Footer -->
-    <footer>
-        © 2026 Sakinn Stays · Manali · Experience Elevated Living
-    </footer>
+    </div>
+</div>
+
+<!-- OUR STAYS -->
+<div class="section">
+    <h2>Our Signature Stays</h2>
+
+    <div class="properties">
+
+        <div class="card">
+            <img src="cottage1.jpg">
+            <div class="card-content">
+                <h3>A-Shape Cottage</h3>
+                <p>Cozy alpine architecture with panoramic mountain views.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="patio.jpg">
+            <div class="card-content">
+                <h3>Snow Heaven Patio</h3>
+                <p>An intimate retreat framed by pine forests and snowfall.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="2bhk.jpg">
+            <div class="card-content">
+                <h3>Luxury 2BHK Cottage</h3>
+                <p>Spacious elegance crafted for families and soulful gatherings.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section">
+    <h2>Signature Features</h2>
+    <div class="features-list">
+        • Panoramic Himalayan Views <br>
+        • Women-Friendly & Safe Environment <br>
+        • Cozy Heated Interiors <br>
+        • High-Speed WiFi <br>
+        • Private Balconies <br>
+        • Bonfire Evenings <br>
+        • Long Stay Discounts Available
+    </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+    <h2>Book Your Stay</h2>
+    <p>
+        📞 +91 9XXXXXXXXX <br>
+        📧 sakinnstays@gmail.com <br>
+        📍 Manali, Himachal Pradesh
+    </p>
+
+    <a href="https://wa.me/919XXXXXXXXX" class="btn">Book on WhatsApp</a>
+    <br>
+    <a href="https://www.airbnb.co.uk/rooms/1313754592877079511?viralityEntryPoint=1&s=76" class="btn">Book on Airbnb</a>
+</div>
+
+<footer>
+    © 2026 Sakinn Stays · Manali · Experience Elevated Living
+</footer>
 
 </body>
 </html>
