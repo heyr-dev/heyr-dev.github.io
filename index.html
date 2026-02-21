@@ -4,46 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sakinn Stays | Luxury Mountain Homestay in Manali</title>
-
-<meta name="description" content="Luxury cottages, workation & long stays in Manali. Book direct & save 20%.">
-<meta name="keywords" content="Luxury Cottage Manali, Workation Manali, Long Stay Manali, Sakinn Stays">
-<meta name="author" content="Sakinn Stays">
+<title>Sakinn Stays | Luxury Mountain Living in Manali</title>
+<meta name="description" content="Boutique luxury mountain stays in Manali. Book direct & save 20%.">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
-html { scroll-behavior: smooth; }
-
-body {
+body{
 margin:0;
-font-family:'Montserrat', sans-serif;
-background:#f5efe6;
+font-family:'Montserrat',sans-serif;
+background:#f6f1e8;
 color:#2c2a28;
 }
 
-h1,h2,h3 {
-font-family:'Playfair Display', serif;
+h1,h2,h3{
+font-family:'Playfair Display',serif;
 }
 
-.navbar {
+.navbar{
 position:fixed;
 width:100%;
 background:rgba(255,255,255,0.95);
-padding:15px;
+padding:20px 0;
 text-align:center;
 z-index:1000;
 }
 
-.navbar a {
-margin:0 20px;
+.navbar a{
+margin:0 25px;
 text-decoration:none;
 color:#2c2a28;
 font-weight:500;
 }
 
-.hero {
+.hero{
 height:100vh;
 background:url('hero.jpg') center/cover fixed;
 display:flex;
@@ -58,7 +53,7 @@ position:relative;
 content:"";
 position:absolute;
 top:0;left:0;right:0;bottom:0;
-background:rgba(0,0,0,0.4);
+background:rgba(0,0,0,0.45);
 }
 
 .hero-content{
@@ -67,14 +62,14 @@ z-index:2;
 }
 
 .hero h1{
-font-size:60px;
+font-size:64px;
 margin:0;
 }
 
 .btn{
 display:inline-block;
-margin:15px;
-padding:14px 30px;
+margin-top:25px;
+padding:15px 40px;
 background:#b76e79;
 color:white;
 text-decoration:none;
@@ -87,24 +82,36 @@ transition:0.3s;
 .section{
 max-width:1100px;
 margin:auto;
-padding:100px 20px;
+padding:120px 20px;
 text-align:center;
 }
 
-.grid{
+.categories{
 display:flex;
-flex-wrap:wrap;
-gap:40px;
 justify-content:center;
+gap:40px;
 margin-top:50px;
 }
 
-.card{
-background:white;
-padding:40px;
-width:300px;
-border-radius:12px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
+.category-btn{
+padding:18px 50px;
+border-radius:50px;
+background:#b76e79;
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+.review-slider{
+display:flex;
+overflow-x:auto;
+gap:30px;
+margin-top:50px;
+}
+
+.review-slider img{
+width:320px;
+border-radius:15px;
 }
 
 .footer{
@@ -120,15 +127,15 @@ bottom:20px;
 right:20px;
 background:#25D366;
 color:white;
-padding:16px;
+padding:18px;
 border-radius:50%;
-text-decoration:none;
 font-size:22px;
+text-decoration:none;
 }
 
 @media(max-width:768px){
-.hero h1{font-size:36px;}
-.grid{flex-direction:column;align-items:center;}
+.hero h1{ font-size:36px; }
+.categories{ flex-direction:column; }
 }
 
 </style>
@@ -137,10 +144,9 @@ font-size:22px;
 <body>
 
 <div class="navbar">
-<a href="#about">About</a>
-<a href="#cottages">Cottages</a>
-<a href="#workation">Workation</a>
-<a href="#longstay">Long Stay</a>
+<a href="index.html">Home</a>
+<a href="cottages.html">Cottages</a>
+<a href="#reviews">Reviews</a>
 <a href="#contact">Book</a>
 </div>
 
@@ -149,88 +155,46 @@ font-size:22px;
 <h1>Sakinn Stays</h1>
 <p>Luxury Mountain Living in Manali</p>
 <a href="#contact" class="btn">Book & Save 20%</a>
+<br>
 <a href="https://www.aairbnb.co.in/p/sakinnstays" class="btn">View on Airbnb</a>
 </div>
 </div>
 
-<!-- PHILOSOPHY -->
-<div class="section" id="about">
+<div class="section">
 <h2>Our Philosophy</h2>
 <p>
 A boutique sanctuary designed for stillness, warmth and refined comfort.
 Experience elevated mountain living surrounded by Himalayan landscapes.
 </p>
+</div>
 
-<div style="margin-top:40px;">
-<a href="#cottages" class="btn">Cottages</a>
-<a href="#workation" class="btn">Workation</a>
-<a href="#longstay" class="btn">Long Stay</a>
+<div class="section">
+<h2>Stay With Us</h2>
+<div class="categories">
+<a href="cottages.html" class="category-btn">Cottages</a>
+<a href="cottages.html" class="category-btn">Workation</a>
+<a href="cottages.html" class="category-btn">Long Stay</a>
 </div>
 </div>
 
-<!-- COTTAGES SECTION -->
-<div class="section" id="cottages">
-<h2>Our Luxury Cottages</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>The Eluna</h3>
-<p><strong>A-Shape Wooden Cottage</strong></p>
-<p>Glass-front architecture with panoramic Himalayan views.</p>
-<p>Private balcony · Heated interiors · Bonfire access · High-speed WiFi</p>
+<div class="section" id="reviews">
+<h2>Guest Reviews</h2>
+<div class="review-slider">
+<img src="review1.jpg">
+<img src="review2.jpg">
+<img src="review3.jpg">
+<img src="review4.jpg">
+</div>
 </div>
 
-<div class="card">
-<h3>The Amara</h3>
-<p><strong>Romantic Mountain Retreat</strong></p>
-<p>Warm wooden interiors with intimate ambiance.</p>
-<p>Mountain views · Cozy bedding · Work desk · Premium linens</p>
-</div>
-
-<div class="card">
-<h3>The Liora</h3>
-<p><strong>Spacious Family Cottage</strong></p>
-<p>Elegant 2BHK cottage designed for families & gatherings.</p>
-<p>Living area · Kitchenette · Balcony · Scenic sunrise views</p>
-</div>
-
-</div>
-
-<a href="https://www.aairbnb.co.in/p/sakinnstays" class="btn">Book Cottage on Airbnb</a>
-</div>
-
-<!-- WORKATION -->
-<div class="section" id="workation">
-<h2>Workation Retreat</h2>
-<p>
-Designed for digital nomads & remote professionals.
-Stable high-speed WiFi, peaceful surroundings and productivity-focused spaces.
-</p>
-<a href="#contact" class="btn">Book Workation</a>
-</div>
-
-<!-- LONG STAY -->
-<div class="section" id="longstay">
-<h2>Long Stay Living</h2>
-<p>
-Experience slow mountain living with special weekly and monthly pricing.
-Perfect for creators, writers and remote workers.
-</p>
-<a href="#contact" class="btn">Enquire Long Stay</a>
-</div>
-
-<!-- CONTACT -->
 <div class="section" id="contact">
 <h2>Book Your Stay</h2>
 <p>
 📞 7300598065 <br>
-📧 sakinnstays@gmail.com <br>
+📧 bookings@sakinnstays.homes <br>
 📍 Manali, Himachal Pradesh
 </p>
-
 <a href="https://wa.me/917300598065" class="btn">Book Direct & Save 20%</a>
-<a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book via Airbnb</a>
 </div>
 
 <div class="footer">
