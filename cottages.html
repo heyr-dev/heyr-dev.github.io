@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Cottages | Sakinn Stays</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+
 body{
 margin:0;
 font-family:'Montserrat',sans-serif;
@@ -20,43 +20,63 @@ h1,h2,h3{
 font-family:'Playfair Display',serif;
 }
 
-.navbar{
-position:fixed;
-width:100%;
-background:rgba(255,255,255,0.95);
-padding:20px 0;
-text-align:center;
+.hero{
+height:60vh;
+background:url('snow.jpg') center/cover fixed;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+position:relative;
 }
 
-.navbar a{
-margin:0 25px;
-text-decoration:none;
-color:#2c2a28;
+.hero::after{
+content:"";
+position:absolute;
+top:0;left:0;right:0;bottom:0;
+background:rgba(0,0,0,0.45);
+}
+
+.hero h1{
+position:relative;
+z-index:2;
+font-size:48px;
+animation:fadeInUp 1.5s ease forwards;
 }
 
 .section{
-max-width:1100px;
+max-width:1000px;
 margin:auto;
-padding:140px 20px 100px;
+padding:100px 20px;
 text-align:center;
 }
 
 .cottage{
 background:white;
-padding:60px 40px;
-margin-bottom:60px;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
+padding:60px;
+margin-bottom:50px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,0.08);
+transition:0.4s;
+}
+
+.cottage:hover{
+transform:translateY(-8px);
 }
 
 .btn{
 display:inline-block;
 margin-top:20px;
-padding:15px 35px;
+padding:12px 35px;
 background:#b76e79;
 color:white;
 text-decoration:none;
-border-radius:40px;
+border-radius:30px;
+}
+
+@keyframes fadeInUp{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 </style>
@@ -64,32 +84,28 @@ border-radius:40px;
 
 <body>
 
-<div class="navbar">
-<a href="index.html">Home</a>
-<a href="cottages.html">Cottages</a>
+<div class="hero">
+<h1>Our Cottages</h1>
 </div>
 
 <div class="section">
-<h1>Our Cottages</h1>
 
 <div class="cottage">
 <h2>The Eluna</h2>
-<h3>A-Shape Wooden Cottage</h3>
-<p>
-Glass-front architecture with panoramic Himalayan views.
-Private balcony · Heated interiors · Bonfire access · High-speed WiFi
-</p>
-<a href="https://www.aairbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
+<p>A-Shape Wooden Cottage with panoramic Himalayan views.</p>
+<a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
 </div>
 
 <div class="cottage">
 <h2>The Amara</h2>
 <p>Romantic mountain retreat with warm wooden interiors.</p>
+<a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
 </div>
 
 <div class="cottage">
 <h2>The Liora</h2>
 <p>Spacious 2BHK family cottage designed for gatherings.</p>
+<a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
 </div>
 
 </div>
