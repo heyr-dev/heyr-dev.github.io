@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cottages | Sakinn Stays</title>
+<title>Our Cottages | Sakinn Stays</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
@@ -16,52 +16,49 @@ background:#f6f1e8;
 color:#2c2a28;
 }
 
-h1,h2,h3{
+h1,h2{
 font-family:'Playfair Display',serif;
 }
 
 .hero{
-height:60vh;
-background:url('snow.jpg') center/cover fixed;
+height:50vh;
+background:url('snow.jpg') center/cover;
 display:flex;
 align-items:center;
 justify-content:center;
 color:white;
-position:relative;
-}
-
-.hero::after{
-content:"";
-position:absolute;
-top:0;left:0;right:0;bottom:0;
-background:rgba(0,0,0,0.45);
-}
-
-.hero h1{
-position:relative;
-z-index:2;
-font-size:48px;
-animation:fadeInUp 1.5s ease forwards;
+text-align:center;
 }
 
 .section{
 max-width:1000px;
 margin:auto;
 padding:100px 20px;
-text-align:center;
 }
 
 .cottage{
 background:white;
-padding:60px;
-margin-bottom:50px;
+padding:50px;
+margin-bottom:60px;
 border-radius:20px;
 box-shadow:0 15px 40px rgba(0,0,0,0.08);
-transition:0.4s;
+text-align:center;
 }
 
-.cottage:hover{
-transform:translateY(-8px);
+.carousel{
+position:relative;
+overflow:hidden;
+margin-top:30px;
+}
+
+.carousel img{
+width:100%;
+border-radius:15px;
+display:none;
+}
+
+.carousel img.active{
+display:block;
 }
 
 .btn{
@@ -72,11 +69,6 @@ background:#b76e79;
 color:white;
 text-decoration:none;
 border-radius:30px;
-}
-
-@keyframes fadeInUp{
-from{opacity:0; transform:translateY(30px);}
-to{opacity:1; transform:translateY(0);}
 }
 
 </style>
@@ -93,22 +85,57 @@ to{opacity:1; transform:translateY(0);}
 <div class="cottage">
 <h2>The Eluna</h2>
 <p>A-Shape Wooden Cottage with panoramic Himalayan views.</p>
+
+<div class="carousel" id="eluna">
+<img src="eluna1.jpg" class="active">
+<img src="eluna2.jpg">
+<img src="eluna3.jpg">
+</div>
+
 <a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
 </div>
 
 <div class="cottage">
 <h2>The Amara</h2>
-<p>Romantic mountain retreat with warm wooden interiors.</p>
+<p>Romantic Mountain Retreat with warm wooden interiors.</p>
+
+<div class="carousel" id="amara">
+<img src="amara1.jpg" class="active">
+<img src="amara2.jpg">
+</div>
+
 <a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
 </div>
 
 <div class="cottage">
 <h2>The Liora</h2>
-<p>Spacious 2BHK family cottage designed for gatherings.</p>
+<p>Spacious 2BHK Family Cottage designed for gatherings.</p>
+
+<div class="carousel" id="liora">
+<img src="liora1.jpg" class="active">
+<img src="liora2.jpg">
+</div>
+
 <a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
 </div>
 
 </div>
+
+<script>
+function autoSlide(id){
+let index=0;
+const slides=document.querySelectorAll("#"+id+" img");
+setInterval(()=>{
+slides[index].classList.remove("active");
+index=(index+1)%slides.length;
+slides[index].classList.add("active");
+},3000);
+}
+
+autoSlide("eluna");
+autoSlide("amara");
+autoSlide("liora");
+</script>
 
 </body>
 </html>
