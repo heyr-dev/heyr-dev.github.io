@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Cottages | Sakinn Stays</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
 body{
 margin:0;
 font-family:'Montserrat',sans-serif;
@@ -17,34 +15,59 @@ background:#f6f1e8;
 color:#2c2a28;
 }
 
-.section{
-max-width:1000px;
+.container{
+max-width:1100px;
 margin:auto;
-padding:100px 20px;
-text-align:center;
-}
-
-h1,h2{
-font-family:'Playfair Display',serif;
+padding:60px 20px;
 }
 
 .cottage{
-margin-bottom:120px;
-padding:40px;
 background:white;
+margin-bottom:80px;
+padding:40px;
 border-radius:20px;
-box-shadow:0 10px 40px rgba(0,0,0,0.08);
+box-shadow:0 15px 40px rgba(0,0,0,0.08);
+}
+
+h2{
+font-family:'Playfair Display',serif;
+}
+
+.slider{
+position:relative;
+width:100%;
+height:350px;
+overflow:hidden;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+opacity:0;
+transition:opacity 1s;
+}
+
+.slide img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.slide.active{
+opacity:1;
 }
 
 .btn{
 display:inline-block;
 margin-top:20px;
-padding:14px 38px;
-border-radius:50px;
-text-decoration:none;
-font-weight:500;
+padding:14px 36px;
 background:#b76e79;
 color:white;
+text-decoration:none;
+border-radius:50px;
 transition:0.3s;
 }
 
@@ -52,38 +75,48 @@ transition:0.3s;
 background:#9d5c66;
 }
 
+.section-title{
+margin-top:30px;
+font-weight:600;
+}
 </style>
 </head>
 
 <body>
 
-<div class="section">
-<h1>Our Cottages</h1>
-</div>
+<div class="container">
 
-<div class="section cottage">
+<div class="cottage">
 <h2>The Eluna</h2>
-<p>A-Shape Wooden Cottage with panoramic Himalayan views.</p>
+
+<div class="slider">
+<div class="slide active"><img src="eluna1.jpg"></div>
+<div class="slide"><img src="eluna2.jpg"></div>
+<div class="slide"><img src="eluna3.jpg"></div>
+</div>
+
+<p><b>Amenities:</b> Private Balcony · Heated Interiors · Bonfire Access · High-Speed WiFi</p>
+
+<p><b>Policies:</b> Check-in 1PM · Check-out 11AM · No smoking indoors</p>
+
+<p><b>How to Reach:</b> 10 mins from Mall Road, Manali</p>
+
 <a href="https://www.secure-booking-engine.com/accounts/f3EYXDMLq58U-f0jPvkL5w/properties/sm0zqE9kVSHQkXFUXOWjzQ/booking-engine/web/source/4wsctBw6Oq6j-g9XuxeRzQ/cart/jMpSnOlTghKe1HrA_Mekzg/#!/rooms" target="_blank" class="btn">
 Book Now
 </a>
 </div>
 
-<div class="section cottage">
-<h2>The Amara</h2>
-<p>Romantic mountain retreat with warm wooden interiors.</p>
-<a href="https://www.secure-booking-engine.com/accounts/f3EYXDMLq58U-f0jPvkL5w/properties/sm0zqE9kVSHQkXFUXOWjzQ/booking-engine/web/source/4wsctBw6Oq6j-g9XuxeRzQ/cart/jMpSnOlTghKe1HrA_Mekzg/#!/rooms" target="_blank" class="btn">
-Book Now
-</a>
 </div>
 
-<div class="section cottage">
-<h2>The Liora</h2>
-<p>Spacious luxury 2BHK family cottage.</p>
-<a href="https://www.secure-booking-engine.com/accounts/f3EYXDMLq58U-f0jPvkL5w/properties/sm0zqE9kVSHQkXFUXOWjzQ/booking-engine/web/source/4wsctBw6Oq6j-g9XuxeRzQ/cart/jMpSnOlTghKe1HrA_Mekzg/#!/rooms" target="_blank" class="btn">
-Book Now
-</a>
-</div>
+<script>
+let slides = document.querySelectorAll('.slide');
+let index = 0;
+setInterval(()=>{
+slides[index].classList.remove('active');
+index = (index + 1) % slides.length;
+slides[index].classList.add('active');
+},3000);
+</script>
 
 </body>
 </html>
