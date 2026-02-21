@@ -28,12 +28,14 @@ justify-content:center;
 color:white;
 position:relative;
 }
+
 .hero::after{
 content:"";
 position:absolute;
 top:0;left:0;right:0;bottom:0;
 background:rgba(0,0,0,0.4);
 }
+
 .hero h1{
 z-index:1;
 font-size:46px;
@@ -53,29 +55,24 @@ border-radius:25px;
 box-shadow:0 15px 40px rgba(0,0,0,0.08);
 }
 
-.slider{
-position:relative;
-overflow:hidden;
-border-radius:20px;
-margin-bottom:25px;
-}
 .slider img{
 width:100%;
 display:none;
 border-radius:20px;
 }
+
 .slider img.active{
 display:block;
 }
 
-/* AMENITIES & POLICIES */
-.details-grid{
+.grid{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:40px;
 margin-top:30px;
 }
-.details-box{
+
+.box{
 background:#f6f1e8;
 padding:25px;
 border-radius:15px;
@@ -91,6 +88,7 @@ text-decoration:none;
 border-radius:40px;
 transition:0.3s;
 }
+
 .btn:hover{
 background:#9d5c66;
 transform:scale(1.05);
@@ -102,8 +100,9 @@ color:white;
 padding:60px 20px;
 text-align:center;
 }
+
 @media(max-width:768px){
-.details-grid{grid-template-columns:1fr;}
+.grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -116,7 +115,6 @@ text-align:center;
 
 <div class="section">
 
-<!-- ELUNA -->
 <div class="cottage">
 <h2>The Eluna</h2>
 
@@ -126,10 +124,10 @@ text-align:center;
 <img src="eluna3.jpg">
 </div>
 
-<p>A-Shape wooden cottage with panoramic Himalayan views and premium interiors.</p>
+<p>A-Shape wooden cottage with panoramic Himalayan views.</p>
 
-<div class="details-grid">
-<div class="details-box">
+<div class="grid">
+<div class="box">
 <h3>Amenities</h3>
 <ul>
 <li>Private Balcony</li>
@@ -138,7 +136,8 @@ text-align:center;
 <li>Bonfire Access</li>
 </ul>
 </div>
-<div class="details-box">
+
+<div class="box">
 <h3>Policies</h3>
 <ul>
 <li>Check-in: 1 PM</li>
@@ -148,7 +147,34 @@ text-align:center;
 </div>
 </div>
 
-<a href="https://www.secure-booking-engine.com/accounts/f3EYXDMLq58U-f0jPvkL5w/properties/sm0zqE9kVSHQkXFUXOWjzQ/booking-engine/web/source/4wsctBw6Oq6j-g9XuxeRzQ/cart/jMpSnOlTghKe1HrA_Mekzg/#!/rooms" class="btn">Book Now</a>
+<a href="https://www.secure-booking-engine.com/accounts/f3EYXDMLq58U-f0jPvkL5w/properties/sm0zqE9kVSHQkXFUXOWjzQ/booking-engine/web/source/4wsctBw6Oq6j-g9XuxeRzQ/cart/jMpSnOlTghKe1HrA_Mekzg/#!/rooms"
+target="_blank"
+rel="noopener noreferrer"
+class="btn">
+Book Now
+</a>
+
 </div>
 
-<!-- Repeat same structure for Amara & Liora -->
+</div>
+
+<div class="footer">
+📞 7300598065<br>
+📍 Manali, Himachal Pradesh
+</div>
+
+<script>
+function autoSlider(id){
+let slides=document.querySelectorAll('#'+id+' img');
+let index=0;
+setInterval(()=>{
+slides[index].classList.remove('active');
+index=(index+1)%slides.length;
+slides[index].classList.add('active');
+},3000);
+}
+autoSlider('eluna');
+</script>
+
+</body>
+</html>
