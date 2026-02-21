@@ -16,59 +16,159 @@ background:#f6f1e8;
 color:#2c2a28;
 }
 
-h1,h2{
+h1,h2,h3{
 font-family:'Playfair Display',serif;
 }
 
 .hero{
 height:50vh;
-background:url('snow.jpg') center/cover;
+background:url('snow.jpg') center/cover no-repeat;
 display:flex;
 align-items:center;
 justify-content:center;
 color:white;
-text-align:center;
+position:relative;
 }
+
+.hero::after{
+content:"";
+position:absolute;
+top:0;left:0;right:0;bottom:0;
+background:rgba(0,0,0,0.4);
+}
+
+.hero h1{
+z-index:1;
+font-size:48px;
+letter-spacing:1px;
+}
+
+/* SECTION */
 
 .section{
 max-width:1000px;
 margin:auto;
 padding:100px 20px;
-}
-
-.cottage{
-background:white;
-padding:50px;
-margin-bottom:60px;
-border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,0.08);
 text-align:center;
 }
 
-.carousel{
-position:relative;
-overflow:hidden;
-margin-top:30px;
+.cottage-card{
+background:white;
+padding:50px;
+border-radius:25px;
+box-shadow:0 20px 50px rgba(0,0,0,0.08);
+margin-bottom:40px;
+cursor:pointer;
+transition:0.4s;
 }
 
-.carousel img{
+.cottage-card:hover{
+transform:translateY(-8px);
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
 width:100%;
-border-radius:15px;
+height:100%;
+background:rgba(0,0,0,0.7);
+z-index:1000;
+overflow:auto;
+}
+
+.modal-content{
+background:#fff;
+margin:5% auto;
+padding:50px;
+width:90%;
+max-width:1000px;
+border-radius:25px;
+position:relative;
+}
+
+.close{
+position:absolute;
+top:20px;
+right:30px;
+font-size:28px;
+cursor:pointer;
+color:#b76e79;
+}
+
+/* IMAGE SLIDER */
+
+.slider img{
+width:100%;
+border-radius:20px;
 display:none;
 }
 
-.carousel img.active{
+.slider img.active{
 display:block;
 }
 
+/* TABS */
+
+.tabs{
+display:flex;
+gap:30px;
+margin-top:30px;
+border-bottom:1px solid #eee;
+}
+
+.tabs button{
+background:none;
+border:none;
+padding:12px 0;
+cursor:pointer;
+font-weight:500;
+color:#2c2a28;
+}
+
+.tabs button.active{
+border-bottom:3px solid #b76e79;
+color:#b76e79;
+}
+
+.tab-content{
+display:none;
+margin-top:25px;
+line-height:1.7;
+}
+
+.tab-content.active{
+display:block;
+}
+
+/* BUTTON */
+
 .btn{
 display:inline-block;
-margin-top:20px;
-padding:12px 35px;
+margin-top:35px;
+padding:15px 40px;
 background:#b76e79;
 color:white;
 text-decoration:none;
-border-radius:30px;
+border-radius:40px;
+transition:0.3s;
+font-weight:500;
+}
+
+.btn:hover{
+background:#9d5c66;
+transform:scale(1.05);
+}
+
+.footer{
+background:#2c2a28;
+color:white;
+padding:60px 20px;
+text-align:center;
+margin-top:60px;
 }
 
 </style>
@@ -82,60 +182,104 @@ border-radius:30px;
 
 <div class="section">
 
-<div class="cottage">
+<div class="cottage-card" onclick="openModal('eluna')">
 <h2>The Eluna</h2>
 <p>A-Shape Wooden Cottage with panoramic Himalayan views.</p>
+</div>
 
-<div class="carousel" id="eluna">
+<div class="cottage-card" onclick="openModal('amara')">
+<h2>The Amara</h2>
+<p>Romantic Mountain Retreat with warm interiors.</p>
+</div>
+
+<div class="cottage-card" onclick="openModal('liora')">
+<h2>The Liora</h2>
+<p>Spacious 2BHK Family Cottage.</p>
+</div>
+
+</div>
+
+<!-- ELUNA MODAL -->
+
+<div id="eluna" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeModal('eluna')">&times;</span>
+
+<h2>The Eluna</h2>
+
+<div class="slider">
 <img src="eluna1.jpg" class="active">
 <img src="eluna2.jpg">
 <img src="eluna3.jpg">
 </div>
 
-<a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
+<div class="tabs">
+<button class="tablink active" onclick="openTab(event,'details1')">Room Details</button>
+<button class="tablink" onclick="openTab(event,'amenities1')">Amenities</button>
+<button class="tablink" onclick="openTab(event,'policy1')">Policies</button>
+<button class="tablink" onclick="openTab(event,'reach1')">How to Reach</button>
 </div>
 
-<div class="cottage">
-<h2>The Amara</h2>
-<p>Romantic Mountain Retreat with warm wooden interiors.</p>
-
-<div class="carousel" id="amara">
-<img src="amara1.jpg" class="active">
-<img src="amara2.jpg">
+<div id="details1" class="tab-content active">
+Glass-front architecture, heated interiors, private balcony, premium bedding.
 </div>
 
-<a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
+<div id="amenities1" class="tab-content">
+High-speed WiFi, Bonfire Access, Cozy Interiors, Mountain Views.
 </div>
 
-<div class="cottage">
-<h2>The Liora</h2>
-<p>Spacious 2BHK Family Cottage designed for gatherings.</p>
-
-<div class="carousel" id="liora">
-<img src="liora1.jpg" class="active">
-<img src="liora2.jpg">
+<div id="policy1" class="tab-content">
+Check-in: 1 PM<br>Check-out: 11 AM<br>No loud music after 10 PM.
 </div>
 
-<a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
+<div id="reach1" class="tab-content">
+Located in Manali, Himachal Pradesh. 15 mins from Mall Road.
 </div>
 
+<a href="https://your-ssup-booking-link.com" class="btn">Book Now</a>
+
 </div>
+</div>
+
+<!-- JS -->
 
 <script>
-function autoSlide(id){
+
+function openModal(id){
+document.getElementById(id).style.display="block";
+}
+
+function closeModal(id){
+document.getElementById(id).style.display="none";
+}
+
+function openTab(evt, tabName){
+let tabs=document.querySelectorAll(".tab-content");
+tabs.forEach(tab=>tab.classList.remove("active"));
+let tablinks=document.querySelectorAll(".tablink");
+tablinks.forEach(link=>link.classList.remove("active"));
+document.getElementById(tabName).classList.add("active");
+evt.currentTarget.classList.add("active");
+}
+
+let sliders=document.querySelectorAll(".slider");
+sliders.forEach(slider=>{
+let slides=slider.querySelectorAll("img");
 let index=0;
-const slides=document.querySelectorAll("#"+id+" img");
 setInterval(()=>{
 slides[index].classList.remove("active");
 index=(index+1)%slides.length;
 slides[index].classList.add("active");
 },3000);
-}
+});
 
-autoSlide("eluna");
-autoSlide("amara");
-autoSlide("liora");
 </script>
+
+<div class="footer">
+📞 7300598065 <br>
+📍 Manali, Himachal Pradesh <br>
+© 2026 Sakinn Stays
+</div>
 
 </body>
 </html>
