@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Cottages | Sakinn Stays</title>
+
+<title>Cottages | Sakinn Stays</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+
 body{
 margin:0;
 font-family:'Montserrat',sans-serif;
@@ -15,166 +17,73 @@ background:#f6f1e8;
 color:#2c2a28;
 }
 
+.section{
+max-width:1000px;
+margin:auto;
+padding:100px 20px;
+text-align:center;
+}
+
 h1,h2{
 font-family:'Playfair Display',serif;
 }
 
-.hero{
-height:50vh;
-background:url('snow.jpg') center/cover no-repeat;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-position:relative;
-}
-
-.hero::after{
-content:"";
-position:absolute;
-top:0;left:0;right:0;bottom:0;
-background:rgba(0,0,0,0.4);
-}
-
-.hero h1{
-z-index:1;
-font-size:46px;
-}
-
-.section{
-max-width:1100px;
-margin:auto;
-padding:100px 20px;
-}
-
 .cottage{
+margin-bottom:120px;
+padding:40px;
 background:white;
-padding:50px;
-margin-bottom:100px;
-border-radius:25px;
-box-shadow:0 15px 40px rgba(0,0,0,0.08);
-}
-
-.slider img{
-width:100%;
-display:none;
 border-radius:20px;
-}
-
-.slider img.active{
-display:block;
-}
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-margin-top:30px;
-}
-
-.box{
-background:#f6f1e8;
-padding:25px;
-border-radius:15px;
+box-shadow:0 10px 40px rgba(0,0,0,0.08);
 }
 
 .btn{
 display:inline-block;
-margin-top:30px;
-padding:14px 35px;
+margin-top:20px;
+padding:14px 38px;
+border-radius:50px;
+text-decoration:none;
+font-weight:500;
 background:#b76e79;
 color:white;
-text-decoration:none;
-border-radius:40px;
 transition:0.3s;
 }
 
 .btn:hover{
 background:#9d5c66;
-transform:scale(1.05);
 }
 
-.footer{
-background:#2c2a28;
-color:white;
-padding:60px 20px;
-text-align:center;
-}
-
-@media(max-width:768px){
-.grid{grid-template-columns:1fr;}
-}
 </style>
 </head>
 
 <body>
 
-<div class="hero">
+<div class="section">
 <h1>Our Cottages</h1>
 </div>
 
-<div class="section">
-
-<div class="cottage">
+<div class="section cottage">
 <h2>The Eluna</h2>
-
-<div class="slider" id="eluna">
-<img src="eluna1.jpg" class="active">
-<img src="eluna2.jpg">
-<img src="eluna3.jpg">
-</div>
-
-<p>A-Shape wooden cottage with panoramic Himalayan views.</p>
-
-<div class="grid">
-<div class="box">
-<h3>Amenities</h3>
-<ul>
-<li>Private Balcony</li>
-<li>High-Speed WiFi</li>
-<li>Luxury Bedding</li>
-<li>Bonfire Access</li>
-</ul>
-</div>
-
-<div class="box">
-<h3>Policies</h3>
-<ul>
-<li>Check-in: 1 PM</li>
-<li>Check-out: 11 AM</li>
-<li>No loud music after 10 PM</li>
-</ul>
-</div>
-</div>
-
-<a href="https://www.secure-booking-engine.com/accounts/f3EYXDMLq58U-f0jPvkL5w/properties/sm0zqE9kVSHQkXFUXOWjzQ/booking-engine/web/source/4wsctBw6Oq6j-g9XuxeRzQ/cart/jMpSnOlTghKe1HrA_Mekzg/#!/rooms"
-target="_blank"
-rel="noopener noreferrer"
-class="btn">
+<p>A-Shape Wooden Cottage with panoramic Himalayan views.</p>
+<a href="https://www.secure-booking-engine.com/accounts/f3EYXDMLq58U-f0jPvkL5w/properties/sm0zqE9kVSHQkXFUXOWjzQ/booking-engine/web/source/4wsctBw6Oq6j-g9XuxeRzQ/cart/jMpSnOlTghKe1HrA_Mekzg/#!/rooms" target="_blank" class="btn">
 Book Now
 </a>
-
 </div>
 
+<div class="section cottage">
+<h2>The Amara</h2>
+<p>Romantic mountain retreat with warm wooden interiors.</p>
+<a href="https://www.secure-booking-engine.com/accounts/f3EYXDMLq58U-f0jPvkL5w/properties/sm0zqE9kVSHQkXFUXOWjzQ/booking-engine/web/source/4wsctBw6Oq6j-g9XuxeRzQ/cart/jMpSnOlTghKe1HrA_Mekzg/#!/rooms" target="_blank" class="btn">
+Book Now
+</a>
 </div>
 
-<div class="footer">
-📞 7300598065<br>
-📍 Manali, Himachal Pradesh
+<div class="section cottage">
+<h2>The Liora</h2>
+<p>Spacious luxury 2BHK family cottage.</p>
+<a href="https://www.secure-booking-engine.com/accounts/f3EYXDMLq58U-f0jPvkL5w/properties/sm0zqE9kVSHQkXFUXOWjzQ/booking-engine/web/source/4wsctBw6Oq6j-g9XuxeRzQ/cart/jMpSnOlTghKe1HrA_Mekzg/#!/rooms" target="_blank" class="btn">
+Book Now
+</a>
 </div>
-
-<script>
-function autoSlider(id){
-let slides=document.querySelectorAll('#'+id+' img');
-let index=0;
-setInterval(()=>{
-slides[index].classList.remove('active');
-index=(index+1)%slides.length;
-slides[index].classList.add('active');
-},3000);
-}
-autoSlider('eluna');
-</script>
 
 </body>
 </html>
