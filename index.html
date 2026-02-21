@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sakinn Stays | Luxury Mountain Living in Manali</title>
-<meta name="description" content="Boutique luxury mountain stays in Manali. Book direct & save 20%.">
+<title>Sakinn Stays | Luxury Homestay in Manali</title>
+<meta name="description" content="Sakinn Stays – Boutique luxury cottages in Manali. Book direct & save 20%. The Eluna, The Amara & The Liora.">
+<meta name="keywords" content="Luxury cottage Manali, Boutique stay Manali, Workation Manali, Sakinn Stays">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -16,9 +17,10 @@ margin:0;
 font-family:'Montserrat',sans-serif;
 background:#f6f1e8;
 color:#2c2a28;
+overflow-x:hidden;
 }
 
-/* VIDEO HERO */
+/* HERO VIDEO */
 
 .hero{
 position:relative;
@@ -28,7 +30,6 @@ display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-color:white;
 }
 
 .hero video{
@@ -38,77 +39,175 @@ left:0;
 width:100%;
 height:100%;
 object-fit:cover;
-z-index:-1;
+z-index:-2;
 }
 
 .hero::after{
 content:"";
 position:absolute;
 top:0;left:0;right:0;bottom:0;
-background:rgba(0,0,0,0.45);
+background:rgba(0,0,0,0.35);
+z-index:-1;
 }
 
 .hero-content{
-z-index:2;
+color:white;
+animation:fadeUp 1.5s ease forwards;
+opacity:0;
 }
 
 .hero h1{
 font-family:'Playfair Display',serif;
 font-size:64px;
-margin-bottom:15px;
+margin:0;
+letter-spacing:1px;
 }
 
 .hero p{
-letter-spacing:2px;
-margin-bottom:30px;
+font-size:20px;
+margin-top:15px;
+font-weight:300;
 }
 
 .btn{
 display:inline-block;
-padding:15px 40px;
-margin:10px;
-background:#b76e79;
-color:white;
-text-decoration:none;
+margin-top:30px;
+padding:16px 42px;
 border-radius:50px;
-transition:0.4s;
+text-decoration:none;
+font-weight:500;
+transition:0.3s;
 }
 
-.btn:hover{
+.btn-primary{
+background:#b76e79;
+color:white;
+}
+
+.btn-primary:hover{
 background:#9d5c66;
 transform:scale(1.05);
+}
+
+.btn-outline{
+border:2px solid white;
+color:white;
+margin-left:15px;
+}
+
+.btn-outline:hover{
+background:white;
+color:#b76e79;
 }
 
 /* SECTION */
 
 .section{
-max-width:1000px;
+max-width:1100px;
 margin:auto;
 padding:120px 20px;
 text-align:center;
 }
 
-.footer{
+.section h2{
+font-family:'Playfair Display',serif;
+font-size:42px;
+margin-bottom:25px;
+}
+
+.section p{
+max-width:700px;
+margin:auto;
+line-height:1.8;
+}
+
+/* COTTAGE PREVIEW */
+
+.cottages-preview{
+margin-top:60px;
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.cottage-box{
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 15px 40px rgba(0,0,0,0.08);
+width:300px;
+transition:0.4s;
+}
+
+.cottage-box:hover{
+transform:translateY(-10px);
+}
+
+/* REVIEW SLIDER */
+
+.review-slider{
+margin-top:60px;
+position:relative;
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.review{
+display:none;
+font-style:italic;
+font-size:18px;
+}
+
+.review.active{
+display:block;
+animation:fadeIn 1s ease;
+}
+
+/* ADDRESS */
+
+.address{
 background:#2c2a28;
 color:white;
-padding:60px 20px;
+padding:70px 20px;
 text-align:center;
 }
 
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-padding:18px;
-border-radius:50%;
-text-decoration:none;
-font-size:22px;
+/* ANIMATIONS */
+
+@keyframes fadeUp{
+to{
+opacity:1;
+transform:translateY(0);
+}
+from{
+opacity:0;
+transform:translateY(30px);
+}
 }
 
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+.fade-scroll{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.fade-scroll.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+/* MOBILE */
+
 @media(max-width:768px){
-.hero h1{font-size:36px;}
+.hero h1{font-size:40px;}
+.btn-outline{margin-left:0;margin-top:15px;display:block;}
 }
 
 </style>
@@ -116,36 +215,108 @@ font-size:22px;
 
 <body>
 
-<div class="hero">
+<!-- HERO SECTION -->
+<section class="hero">
 <video autoplay muted loop playsinline>
-<source src="drone.mp4" type="video/mp4">
+<source src="VID-20260222-WA0000.mp4" type="video/mp4">
 </video>
 
 <div class="hero-content">
 <h1>Sakinn Stays</h1>
 <p>Luxury Mountain Living in Manali</p>
 
-<a href="https://wa.me/917300598065" class="btn">Book Direct & Save 20%</a>
-<a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">View on Airbnb</a>
-<a href="cottages.html" class="btn">Explore Cottages</a>
-</div>
-</div>
+<a href="https://your-ssup-link.com" class="btn btn-primary">Book Direct & Save 20%</a>
+<a href="https://www.aairbnb.co.in/p/sakinnstays" class="btn btn-outline">View on Airbnb</a>
 
-<div class="section">
+</div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="section fade-scroll">
 <h2>Our Philosophy</h2>
 <p>
 A boutique sanctuary designed for stillness, warmth and refined comfort.
-Experience elevated Himalayan living.
+Experience elevated mountain living surrounded by breathtaking Himalayan landscapes.
 </p>
+</section>
+
+<!-- COTTAGES PREVIEW -->
+<section class="section fade-scroll">
+<h2>Our Cottages</h2>
+
+<div class="cottages-preview">
+
+<div class="cottage-box">
+<h3>The Eluna</h3>
+<p>A-Shape Wooden Cottage with panoramic glass views.</p>
 </div>
 
-<div class="footer">
-📞 7300598065 <br>
-📍 Manali, Himachal Pradesh <br>
-© 2026 Sakinn Stays
+<div class="cottage-box">
+<h3>The Amara</h3>
+<p>Romantic mountain retreat with warm interiors.</p>
 </div>
 
-<a href="https://wa.me/917300598065" class="whatsapp">💬</a>
+<div class="cottage-box">
+<h3>The Liora</h3>
+<p>Spacious 2BHK family cottage with garden views.</p>
+</div>
+
+</div>
+
+<br><br>
+<a href="cottages.html" class="btn btn-primary">Explore All Cottages</a>
+</section>
+
+<!-- REVIEWS -->
+<section class="section fade-scroll">
+<h2>Guest Reviews</h2>
+
+<div class="review-slider">
+<div class="review active">“One of the most beautiful stays in Manali. The view is magical.”</div>
+<div class="review">“The Eluna is pure luxury. Warm interiors and stunning sunrise views.”</div>
+<div class="review">“Perfect for workation. Peaceful and high-speed WiFi.”</div>
+</div>
+</section>
+
+<!-- ADDRESS -->
+<section class="address">
+<h2>Sakinn Stays</h2>
+<p>Manali, Himachal Pradesh</p>
+<p>📞 7300598065</p>
+<p>© 2026 Sakinn Stays</p>
+</section>
+
+<script>
+
+/* Fade Scroll Animation */
+
+const faders=document.querySelectorAll('.fade-scroll');
+const appearOptions={threshold:0.2};
+
+const appearOnScroll=new IntersectionObserver(function(entries,observer){
+entries.forEach(entry=>{
+if(!entry.isIntersecting){return;}
+entry.target.classList.add('visible');
+observer.unobserve(entry.target);
+});
+},appearOptions);
+
+faders.forEach(fader=>{
+appearOnScroll.observe(fader);
+});
+
+/* Auto Review Slider */
+
+let reviews=document.querySelectorAll('.review');
+let current=0;
+
+setInterval(()=>{
+reviews[current].classList.remove('active');
+current=(current+1)%reviews.length;
+reviews[current].classList.add('active');
+},4000);
+
+</script>
 
 </body>
 </html>
