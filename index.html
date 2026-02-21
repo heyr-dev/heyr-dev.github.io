@@ -7,7 +7,7 @@
 <title>Sakinn Stays | Luxury Mountain Living in Manali</title>
 <meta name="description" content="Boutique luxury mountain stays in Manali. Book direct & save 20%.">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
@@ -16,25 +16,29 @@ margin:0;
 font-family:'Montserrat',sans-serif;
 background:#f6f1e8;
 color:#2c2a28;
-overflow-x:hidden;
 }
 
-h1,h2,h3{
-font-family:'Playfair Display',serif;
-letter-spacing:1px;
-}
-
-/* HERO */
+/* VIDEO HERO */
 
 .hero{
+position:relative;
 height:100vh;
-background:url('snow.jpg') center/cover no-repeat fixed;
+overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
 color:white;
-position:relative;
+}
+
+.hero video{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-1;
 }
 
 .hero::after{
@@ -45,27 +49,24 @@ background:rgba(0,0,0,0.45);
 }
 
 .hero-content{
-position:relative;
 z-index:2;
-animation:fadeInUp 1.8s ease forwards;
 }
 
 .hero h1{
+font-family:'Playfair Display',serif;
 font-size:64px;
 margin-bottom:15px;
 }
 
 .hero p{
-font-size:20px;
 letter-spacing:2px;
+margin-bottom:30px;
 }
-
-/* BUTTON */
 
 .btn{
 display:inline-block;
-margin-top:25px;
-padding:15px 45px;
+padding:15px 40px;
+margin:10px;
 background:#b76e79;
 color:white;
 text-decoration:none;
@@ -78,64 +79,14 @@ background:#9d5c66;
 transform:scale(1.05);
 }
 
-/* SECTIONS */
+/* SECTION */
 
 .section{
 max-width:1000px;
 margin:auto;
 padding:120px 20px;
 text-align:center;
-opacity:0;
-transform:translateY(40px);
-transition:1s;
 }
-
-.section.visible{
-opacity:1;
-transform:translateY(0);
-}
-
-/* COTTAGES */
-
-.cottages{
-display:flex;
-flex-direction:column;
-gap:50px;
-margin-top:60px;
-}
-
-.cottage-box{
-background:white;
-padding:60px 40px;
-border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,0.08);
-transition:0.4s;
-}
-
-.cottage-box:hover{
-transform:translateY(-8px);
-}
-
-/* REVIEWS */
-
-.review-slider{
-display:flex;
-gap:30px;
-margin-top:50px;
-animation:scrollReviews 25s linear infinite;
-}
-
-.review-slider img{
-width:300px;
-border-radius:20px;
-transition:0.4s;
-}
-
-.review-slider img:hover{
-transform:scale(1.05);
-}
-
-/* FOOTER */
 
 .footer{
 background:#2c2a28;
@@ -143,8 +94,6 @@ color:white;
 padding:60px 20px;
 text-align:center;
 }
-
-/* WHATSAPP */
 
 .whatsapp{
 position:fixed;
@@ -154,24 +103,12 @@ background:#25D366;
 color:white;
 padding:18px;
 border-radius:50%;
-font-size:22px;
 text-decoration:none;
-}
-
-/* ANIMATIONS */
-
-@keyframes fadeInUp{
-from{opacity:0; transform:translateY(30px);}
-to{opacity:1; transform:translateY(0);}
-}
-
-@keyframes scrollReviews{
-0%{transform:translateX(0);}
-100%{transform:translateX(-50%);}
+font-size:22px;
 }
 
 @media(max-width:768px){
-.hero h1{ font-size:36px; }
+.hero h1{font-size:36px;}
 }
 
 </style>
@@ -180,83 +117,35 @@ to{opacity:1; transform:translateY(0);}
 <body>
 
 <div class="hero">
+<video autoplay muted loop playsinline>
+<source src="drone.mp4" type="video/mp4">
+</video>
+
 <div class="hero-content">
 <h1>Sakinn Stays</h1>
 <p>Luxury Mountain Living in Manali</p>
 
 <a href="https://wa.me/917300598065" class="btn">Book Direct & Save 20%</a>
-<br>
 <a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">View on Airbnb</a>
-
+<a href="cottages.html" class="btn">Explore Cottages</a>
 </div>
 </div>
 
 <div class="section">
 <h2>Our Philosophy</h2>
 <p>
-A boutique mountain sanctuary designed for stillness, warmth and refined comfort.
-Experience elevated living surrounded by breathtaking Himalayan landscapes.
+A boutique sanctuary designed for stillness, warmth and refined comfort.
+Experience elevated Himalayan living.
 </p>
-</div>
-
-<div class="section">
-<h2>Our Cottages</h2>
-
-<div class="cottages">
-
-<div class="cottage-box">
-<h3>The Eluna</h3>
-<p>A-Shape Wooden Cottage with panoramic Himalayan views.</p>
-<a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
-</div>
-
-<div class="cottage-box">
-<h3>The Amara</h3>
-<p>Romantic mountain retreat with warm wooden interiors.</p>
-<a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
-</div>
-
-<div class="cottage-box">
-<h3>The Liora</h3>
-<p>Spacious 2BHK family cottage designed for gatherings.</p>
-<a href="https://www.airbnb.co.in/p/sakinnstays" class="btn">Book on Airbnb</a>
-</div>
-
-</div>
-</div>
-
-<div class="section">
-<h2>Guest Reviews</h2>
-
-<div class="review-slider">
-<img src="review1.jpg">
-<img src="review2.jpg">
-<img src="review3.jpg">
-<img src="review4.jpg">
-<img src="review1.jpg">
-<img src="review2.jpg">
-</div>
-
 </div>
 
 <div class="footer">
 📞 7300598065 <br>
-© 2026 Sakinn Stays · Experience Elevated Mountain Living
+📍 Manali, Himachal Pradesh <br>
+© 2026 Sakinn Stays
 </div>
 
 <a href="https://wa.me/917300598065" class="whatsapp">💬</a>
-
-<script>
-const sections = document.querySelectorAll('.section');
-window.addEventListener('scroll',()=>{
-sections.forEach(section=>{
-const position=section.getBoundingClientRect().top;
-if(position < window.innerHeight - 100){
-section.classList.add('visible');
-}
-});
-});
-</script>
 
 </body>
 </html>
