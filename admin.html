@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cottages</title>
+
+<style>
+body {
+  margin:0;
+  background:#f6f1e8;
+  font-family: Arial, sans-serif;
+}
+.container {
+  max-width:1000px;
+  margin:auto;
+  padding:40px 20px;
+}
+.card {
+  background:white;
+  margin-bottom:40px;
+  padding:20px;
+  border-radius:10px;
+}
+.card img {
+  width:100%;
+  height:300px;
+  object-fit:cover;
+  border-radius:8px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+<h1>Our Cottages</h1>
+<div id="cottages">Loading...</div>
+</div>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+<script>
+(async function(){
+
+try {
+
+if (!window.supabase) {
+  document.body.innerHTML = "<h2>Supabase library not loaded</h2>";
+  return;
+}
+
+const supabase = window.supabase.createClient(
+  "https://vefjalqeomncvvklsvua.supabase.co",
+  "sb_publishable_mKFtccQH4bzZ_u7PCVY4CQ_n_RwW3-o"
+);
+
+const { data, error } = await supabase
+  .from("cottages")
+  .select("*");
+
+if (error) {
+  document.body.innerHTML = "<h2>Supabase Error:</h2><pre>" + error.message + "</pre>";
+  return;
+}
+
+if (!data) {
+  document.body.innerHTML = "<h2>No data returned</h2>";
+  return;
+}
+
+const container = document.getElementById("cottages");
+container.innerHTML = "";
+
+if (data.length === 0) {
+  container.innerHTML = "<p>No cottages found in database.</p>";
+  return;
+}
+
+data.forEach(cottage => {
+  container.innerHTML += `
+    <div class="card">
+      <h2>${cottage.name || ""}</h2>
+      <img src="${cottage.image_url || ""}">
+      <p><strong>Price:</strong> ₹ ${cottage.price || ""}</p>
+      <p>${cottage.description || ""}</p>
+      <p><strong>Amenities:</strong> ${cottage.amenities || ""}</p>
+      <p><strong>Policies:</strong> ${cottage.policies || ""}</p>
+    </div>
+  `;
+});
+
+} catch (e) {
+  document.body.innerHTML = "<h2>Unexpected Error:</h2><pre>" + e + "</pre>";
+}
+
+})();
+</script>
+
+</body>
+</html>
