@@ -3,98 +3,258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sakinn Admin</title>
-</head>
-<body>
-
-<h2>Upload Cottage Images</h2>
-
-<select id="cottageSelect"></select>
-<br><br>
-
-<input type="file" id="imageInput" multiple>
-<br><br>
-
-<button id="uploadBtn">Upload</button>
-
-<p id="status"></p>
+<title>Sakinn Admin Panel</title>
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
+<style>
+body { font-family: Arial; padding:20px; background:#f5f5f5; }
+.card { background:white; padding:20px; margin-bottom:20px; border-radius:10px; }
+input, textarea, select { width:100%; padding:8px; margin:5px 0 10px; }
+button { padding:8px 12px; cursor:pointer; margin:5px 0; }
+img { width:120px; margin:5px; border-radius:6px; }
+#login-box { max-width:400px; margin:auto; margin-top:100px; }
+</style>
+
+</head>
+<body>
+
+<!-- LOGIN SECTION -->
+<div id="login-section">
+  <div class="card" id="login-box">
+    <h2>Admin Login</h2>
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- ADMIN SECTION -->
+<div id="admin-section" style="display:none;">
+
+  <h1>Sakinn CMS</h1>
+  <button onclick="logout()">Logout</button>
+
+  <div id="cottages"></div>
+
+  <h2>Add FAQ</h2>
+  <div class="card">
+    <input id="faq-question" placeholder="Question">
+    <textarea id="faq-answer" placeholder="Answer"></textarea>
+    <button onclick="addFAQ()">Add FAQ</button>
+  </div>
+
+  <div id="faq-container"></div>
+
+</div>
+
 <script>
 
-document.addEventListener("DOMContentLoaded", async function () {
+const supabase = window.supabase.createClient(
+  "https://vefjalqeomncvvklsvua.supabase.co",
+  "sb_publishable_mKFtccQH4bzZ_u7PCVY4CQ_n_RwW3-o"
+);
 
-  const supabase = window.supabase.createClient(
-    "https://vefjalqeomncvvklsvua.supabase.co",
-    "sb_publishable_mKFtccQH4bzZ_u7PCVY4CQ_n_RwW3-o"
-  );
+// LOGIN
+async function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-  async function loadCottages() {
-    const { data, error } = await supabase
-      .from("cottages")
-      .select("*");
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-    if (error) {
-      document.getElementById("status").innerText = error.message;
-      return;
-    }
+  if (error) {
+    alert(error.message);
+  } else {
+    checkUser();
+  }
+}
 
-    const select = document.getElementById("cottageSelect");
-    select.innerHTML = "";
+// LOGOUT
+async function logout() {
+  await supabase.auth.signOut();
+  location.reload();
+}
 
-    data.forEach(c => {
-      const option = document.createElement("option");
-      option.value = c.id;
-      option.textContent = c.name;
-      select.appendChild(option);
+// SESSION CHECK
+async function checkUser() {
+  const { data } = await supabase.auth.getSession();
+  if (data.session) {
+    document.getElementById("login-section").style.display = "none";
+    document.getElementById("admin-section").style.display = "block";
+    loadCMS();
+  }
+}
+
+// LOAD CMS
+async function loadCMS() {
+
+  const { data: cottages } = await supabase.from("cottages").select("*");
+  const container = document.getElementById("cottages");
+  container.innerHTML = "";
+
+  for (let cottage of cottages) {
+
+    const { data: images } = await supabase
+      .from("cottage_images")
+      .select("*")
+      .eq("cottage_id", cottage.id);
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h2>${cottage.name}</h2>
+
+      <label>Price</label>
+      <input value="${cottage.price || ''}"
+        onchange="updateCottage(${cottage.id}, 'price', this.value)">
+
+      <label>Description</label>
+      <textarea onchange="updateCottage(${cottage.id}, 'description', this.value)">
+${cottage.description || ""}
+      </textarea>
+
+      <label>Amenities (one per line)</label>
+      <textarea onchange="updateCottage(${cottage.id}, 'amenities', this.value)">
+${cottage.amenities || ""}
+      </textarea>
+
+      <label>Policies (one per line)</label>
+      <textarea onchange="updateCottage(${cottage.id}, 'policies', this.value)">
+${cottage.policies || ""}
+      </textarea>
+
+      <h4>Upload Images</h4>
+      <input type="file" multiple onchange="uploadImages(event, ${cottage.id})">
+
+      <div id="images-${cottage.id}"></div>
+
+      <button style="background:red;color:white;"
+        onclick="deleteCottage(${cottage.id})">
+        Delete Cottage
+      </button>
+    `;
+
+    container.appendChild(card);
+
+    const imgContainer = document.getElementById(`images-${cottage.id}`);
+
+    images?.forEach(img => {
+      const imageEl = document.createElement("div");
+      imageEl.innerHTML = `
+        <img src="${img.image_url}">
+        <button onclick="deleteImage(${img.id})">Delete</button>
+      `;
+      imgContainer.appendChild(imageEl);
     });
   }
 
-  async function uploadImage() {
+  loadFAQs();
+}
 
-    const files = document.getElementById("imageInput").files;
-    const cottageId = document.getElementById("cottageSelect").value;
+// UPDATE COTTAGE
+async function updateCottage(id, field, value) {
+  await supabase.from("cottages")
+    .update({ [field]: value })
+    .eq("id", id);
+}
 
-    if (!files.length) {
-      alert("Select images first");
-      return;
-    }
+// DELETE COTTAGE
+async function deleteCottage(id) {
+  if (!confirm("Delete this cottage?")) return;
 
-    for (let file of files) {
+  await supabase.from("cottages")
+    .delete()
+    .eq("id", id);
 
-      const fileName = Date.now() + "-" + file.name;
+  loadCMS();
+}
 
-      const { error } = await supabase.storage
-        .from("cottage-images")
-        .upload(fileName, file);
+// UPLOAD IMAGES
+async function uploadImages(event, cottageId) {
 
-      if (error) {
-        document.getElementById("status").innerText = error.message;
-        return;
-      }
+  const files = event.target.files;
 
-      const publicUrl =
-        "https://vefjalqeomncvvklsvua.supabase.co/storage/v1/object/public/cottage-images/" + fileName;
+  for (let file of files) {
 
-      await supabase.from("cottage_images").insert({
-        cottage_id: cottageId,
-        image_url: publicUrl
-      });
+    const fileName = Date.now() + "-" + file.name;
 
-    }
+    await supabase.storage
+      .from("cottage-images")
+      .upload(fileName, file);
 
-    document.getElementById("status").innerText = "Upload successful ✅";
+    const publicUrl =
+      "https://vefjalqeomncvvklsvua.supabase.co/storage/v1/object/public/cottage-images/" + fileName;
+
+    await supabase.from("cottage_images").insert({
+      cottage_id: cottageId,
+      image_url: publicUrl
+    });
   }
 
-  document.getElementById("uploadBtn").addEventListener("click", uploadImage);
+  loadCMS();
+}
 
-  loadCottages();
+// DELETE IMAGE
+async function deleteImage(id) {
+  await supabase.from("cottage_images")
+    .delete()
+    .eq("id", id);
 
-});
+  loadCMS();
+}
+
+// FAQ MANAGEMENT
+async function loadFAQs() {
+
+  const { data: faqs } = await supabase.from("faqs").select("*");
+  const container = document.getElementById("faq-container");
+  container.innerHTML = "<h2>Manage FAQs</h2>";
+
+  faqs?.forEach(faq => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <input value="${faq.question}"
+        onchange="updateFAQ(${faq.id}, 'question', this.value)">
+      <textarea onchange="updateFAQ(${faq.id}, 'answer', this.value)">
+${faq.answer}
+      </textarea>
+      <button onclick="deleteFAQ(${faq.id})">Delete FAQ</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+async function addFAQ() {
+  const question = document.getElementById("faq-question").value;
+  const answer = document.getElementById("faq-answer").value;
+
+  await supabase.from("faqs").insert({ question, answer });
+
+  document.getElementById("faq-question").value = "";
+  document.getElementById("faq-answer").value = "";
+
+  loadCMS();
+}
+
+async function updateFAQ(id, field, value) {
+  await supabase.from("faqs")
+    .update({ [field]: value })
+    .eq("id", id);
+}
+
+async function deleteFAQ(id) {
+  await supabase.from("faqs")
+    .delete()
+    .eq("id", id);
+
+  loadCMS();
+}
+
+checkUser();
 
 </script>
 
 </body>
 </html>
-
