@@ -172,6 +172,17 @@ Experience elevated Himalayan living surrounded by breathtaking Himalayan landsc
 <p>Manali, Himachal Pradesh</p>
 <p>📞 7300598065</p>
 </section>
+<script>
+fetch("https://script.google.com/macros/s/AKfycbyjC7a7zgBQwtAvUf2NbnR4FQ74-Z4xgorWvAh-1k94qgJk3E1-3uLePtSHn4zu9M1ZFA/exec")
+.then(res => res.json())
+.then(data => {
 
+  if(data.homepage.length > 0){
+    document.querySelector(".hero h1").innerText = data.homepage[0].hero_title;
+    document.querySelector(".hero p").innerText = data.homepage[0].hero_subtitle;
+  }
+
+});
+</script>
 </body>
 </html>
