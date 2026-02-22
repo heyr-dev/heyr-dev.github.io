@@ -19,35 +19,37 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    data.forEach(cottage => {
+    if (!data) return;
 
-      const nameKey = cottage.name.toLowerCase().replace(/\s+/g, "");
+    data.forEach(function(cottage) {
 
-      // Image
+      if (!cottage.name) return;
+
+      const nameKey = cottage.name
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .replace(/[^a-z0-9]/g, "");
+
       const imageEl = document.getElementById(nameKey + "-image");
       if (imageEl && cottage.image_url) {
         imageEl.src = cottage.image_url;
       }
 
-      // Description
       const descEl = document.getElementById(nameKey + "-description");
       if (descEl && cottage.description) {
         descEl.innerText = cottage.description;
       }
 
-      // Price
       const priceEl = document.getElementById(nameKey + "-price");
       if (priceEl && cottage.price) {
         priceEl.innerText = "₹ " + cottage.price;
       }
 
-      // Amenities
       const amenEl = document.getElementById(nameKey + "-amenities");
       if (amenEl && cottage.amenities) {
         amenEl.innerText = cottage.amenities;
       }
 
-      // Policies
       const polEl = document.getElementById(nameKey + "-policies");
       if (polEl && cottage.policies) {
         polEl.innerText = cottage.policies;
