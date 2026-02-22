@@ -7,6 +7,9 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
+<!-- SUPABASE LIBRARY -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 
 body{
@@ -42,8 +45,6 @@ z-index:1;
 font-size:48px;
 }
 
-/* SECTION */
-
 .section{
 max-width:1000px;
 margin:auto;
@@ -64,8 +65,6 @@ transition:0.4s;
 .cottage-card:hover{
 transform:translateY(-6px);
 }
-
-/* MODAL */
 
 .modal{
 display:none;
@@ -98,8 +97,6 @@ cursor:pointer;
 color:#b76e79;
 }
 
-/* IMAGE SLIDER */
-
 .slider img{
 width:100%;
 border-radius:18px;
@@ -109,8 +106,6 @@ display:none;
 .slider img.active{
 display:block;
 }
-
-/* TABS */
 
 .tabs{
 display:flex;
@@ -144,8 +139,6 @@ text-align:left;
 display:block;
 }
 
-/* BUTTON */
-
 .btn{
 display:inline-block;
 margin-top:35px;
@@ -171,217 +164,4 @@ text-align:center;
 margin-top:60px;
 }
 
-</style>
-</head>
-
-<body>
-
-<div class="hero">
-<h1>Our Cottages</h1>
-</div>
-
-<div class="section">
-
-<div class="cottage-card" onclick="openModal('elunaModal')">
-<h2>The Eluna</h2>
-<p>Glass-front wooden cottage with panoramic Himalayan views.</p>
-</div>
-
-<div class="cottage-card" onclick="openModal('amaraModal')">
-<h2>The Amara</h2>
-<p>Romantic mountain retreat with warm wooden interiors.</p>
-</div>
-
-<div class="cottage-card" onclick="openModal('lioraModal')">
-<h2>The Liora</h2>
-<p>Spacious 2BHK family cottage with gardens.</p>
-</div>
-
-</div>
-
-<!-- THE ELUNA MODAL -->
-<div id="elunaModal" class="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal('elunaModal')">&times;</span>
-
-<h2>The Eluna – A-Shape Wooden Cottage</h2>
-
-<div class="slider" id="elunaSlider">
-<img src="eluna1.jpg" class="active">
-<img src="eluna2.jpg">
-<img src="eluna3.jpg">
-<img src="eluna4.jpg">
-</div>
-
-<div class="tabs">
-<button class="tablink active" onclick="openTab(event,'elunaDetails')">Details</button>
-<button class="tablink" onclick="openTab(event,'elunaAmenities')">Amenities</button>
-<button class="tablink" onclick="openTab(event,'elunaPolicies')">Policies</button>
-<button class="tablink" onclick="openTab(event,'elunaReach')">How to Reach</button>
-</div>
-
-<div id="elunaDetails" class="tab-content active">
-Glass-front architecture with premium wooden interiors, private balcony and panoramic Himalayan views.
-</div>
-
-<div id="elunaAmenities" class="tab-content">
-<ul>
-<li>Private Balcony</li>
-<li>High-Speed WiFi</li>
-<li>Luxury Bedding</li>
-<li>Bonfire Access</li>
-<li>Heated Interiors</li>
-</ul>
-</div>
-
-<div id="elunaPolicies" class="tab-content">
-Check-in: 1 PM<br>Check-out: 11 AM<br>Quiet hours after 10 PM<br>No pets inside cottage
-</div>
-
-<div id="elunaReach" class="tab-content">
-Located in Manali, Himachal Pradesh. 15 min from Mall Road. Nearest taxi stand within 5 min walk.
-</div>
-
-<a href="href="https://wa.me/917300598065?text=Hi%20I%20want%20to%20book%20Sakinn%20Stays"" class="btn">Book Now</a>
-
-</div>
-</div>
-
-<!-- THE AMARA MODAL -->
-<div id="amaraModal" class="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal('amaraModal')">&times;</span>
-
-<h2>The Amara – Mountain Retreat</h2>
-
-<div class="slider" id="amaraSlider">
-<img src="amara1.jpg" class="active">
-<img src="amara2.jpg">
-<img src="amara3.jpg">
-</div>
-
-<div class="tabs">
-<button class="tablink active" onclick="openTab(event,'amaraDetails')">Details</button>
-<button class="tablink" onclick="openTab(event,'amaraAmenities')">Amenities</button>
-<button class="tablink" onclick="openTab(event,'amaraPolicies')">Policies</button>
-<button class="tablink" onclick="openTab(event,'amaraReach')">How to Reach</button>
-</div>
-
-<div id="amaraDetails" class="tab-content active">
-Warm wooden interiors with cozy atmosphere and romantic lighting.
-</div>
-
-<div id="amaraAmenities" class="tab-content">
-<ul>
-<li>Heated Interiors</li>
-<li>Luxury Bedding</li>
-<li>Mountain Views</li>
-<li>Coffee & Tea Station</li>
-</ul>
-</div>
-
-<div id="amaraPolicies" class="tab-content">
-Same policies as Eluna. Check-in 1 PM, Check-out 11 AM.
-</div>
-
-<div id="amaraReach" class="tab-content">
-Located in scenic Manali hillside near fruit orchards.
-</div>
-
-<a href="href="https://wa.me/917300598065?text=Hi%20I%20want%20to%20book%20Sakinn%20Stays"" class="btn">Book Now</a>
-
-</div>
-</div>
-
-<!-- THE LIORA MODAL -->
-<div id="lioraModal" class="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal('lioraModal')">&times;</span>
-
-<h2>The Liora – Family Cottage</h2>
-
-<div class="slider" id="lioraSlider">
-<img src="liora1.jpg" class="active">
-<img src="liora2.jpg">
-<img src="liora3.jpg">
-</div>
-
-<div class="tabs">
-<button class="tablink active" onclick="openTab(event,'lioraDetails')">Details</button>
-<button class="tablink" onclick="openTab(event,'lioraAmenities')">Amenities</button>
-<button class="tablink" onclick="openTab(event,'lioraPolicies')">Policies</button>
-<button class="tablink" onclick="openTab(event,'lioraReach')">How to Reach</button>
-</div>
-
-<div id="lioraDetails" class="tab-content active">
-Spacious 2BHK cottage designed for family comfort with lounge and garden views.
-</div>
-
-<div id="lioraAmenities" class="tab-content">
-<ul>
-<li>Garden Seating</li>
-<li>Kitchenette</li>
-<li>Family Friendly Setups</li>
-<li>High-Speed WiFi</li>
-</ul>
-</div>
-
-<div id="lioraPolicies" class="tab-content">
-Check-in 1 PM, Check-out 11 AM. Extra bedding available.
-</div>
-
-<div id="lioraReach" class="tab-content">
-Located near riverside in Manali outskirts.
-</div>
-
-<a href="href="https://wa.me/917300598065?text=Hi%20I%20want%20to%20book%20Sakinn%20Stays"" class="btn">Book Now</a>
-
-</div>
-</div>
-
-<div class="footer">
-📞 7300598065 • 📍 Manali, Himachal Pradesh <br>
-© 2026 Sakinn Stays
-</div>
-
-<script>
-
-// MODAL HANDLING
-function openModal(id){
-document.getElementById(id).style.display="block";
-}
-function closeModal(id){
-document.getElementById(id).style.display="none";
-}
-
-// TABS
-function openTab(evt, name){
-let allContents=document.querySelectorAll('.tab-content');
-allContents.forEach(c=>c.classList.remove('active'));
-let allLinks=document.querySelectorAll('.tablink');
-allLinks.forEach(l=>l.classList.remove('active'));
-
-document.getElementById(name).classList.add('active');
-evt.currentTarget.classList.add('active');
-}
-
-// AUTO SLIDERS
-function autoSlider(id){
-let slider=document.getElementById(id+'Slider');
-let images=slider.querySelectorAll('img');
-let idx=0;
-setInterval(()=>{
-images[idx].classList.remove('active');
-idx=(idx+1)%images.length;
-images[idx].classList.add('active');
-},3000);
-}
-
-autoSlider('eluna');
-autoSlider('amara');
-autoSlider('liora');
-
-</script>
-
-</body>
-</html>
+</
