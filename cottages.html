@@ -1,167 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Cottages | Sakinn Stays</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
-<!-- SUPABASE LIBRARY -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-body{
-margin:0;
-font-family:'Montserrat',sans-serif;
-background:#f6f1e8;
-color:#2c2a28;
-}
+  const supabaseUrl = "https://vefjalqeomncvvklsvua.supabase.co";
+  const supabaseKey = "sb_publishable_mKFtccQH4bzZ_u7PCVY4CQ_n_RwW3-o";
 
-h1,h2,h3{
-font-family:'Playfair Display',serif;
-}
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-.hero{
-height:50vh;
-background:url('snow.jpg') center/cover no-repeat;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-position:relative;
-}
+  async function loadCottages() {
 
-.hero::after{
-content:"";
-position:absolute;
-top:0;left:0;right:0;bottom:0;
-background:rgba(0,0,0,0.4);
-}
+    const { data, error } = await supabase
+      .from("cottages")
+      .select("*");
 
-.hero h1{
-z-index:1;
-font-size:48px;
-}
+    if (error) {
+      console.error("Supabase Error:", error);
+      return;
+    }
 
-.section{
-max-width:1000px;
-margin:auto;
-padding:100px 20px;
-text-align:center;
-}
+    data.forEach(cottage => {
 
-.cottage-card{
-background:white;
-padding:45px;
-border-radius:25px;
-box-shadow:0 15px 40px rgba(0,0,0,0.08);
-margin-bottom:40px;
-cursor:pointer;
-transition:0.4s;
-}
+      const nameKey = cottage.name.toLowerCase().replace(/\s+/g, "");
 
-.cottage-card:hover{
-transform:translateY(-6px);
-}
+      // Image
+      const imageEl = document.getElementById(nameKey + "-image");
+      if (imageEl && cottage.image_url) {
+        imageEl.src = cottage.image_url;
+      }
 
-.modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.7);
-z-index:1000;
-overflow:auto;
-}
+      // Description
+      const descEl = document.getElementById(nameKey + "-description");
+      if (descEl && cottage.description) {
+        descEl.innerText = cottage.description;
+      }
 
-.modal-content{
-background:#fff;
-margin:5% auto;
-padding:40px;
-width:90%;
-max-width:1000px;
-border-radius:20px;
-position:relative;
-}
+      // Price
+      const priceEl = document.getElementById(nameKey + "-price");
+      if (priceEl && cottage.price) {
+        priceEl.innerText = "₹ " + cottage.price;
+      }
 
-.close{
-position:absolute;
-top:20px;
-right:30px;
-font-size:28px;
-cursor:pointer;
-color:#b76e79;
-}
+      // Amenities
+      const amenEl = document.getElementById(nameKey + "-amenities");
+      if (amenEl && cottage.amenities) {
+        amenEl.innerText = cottage.amenities;
+      }
 
-.slider img{
-width:100%;
-border-radius:18px;
-display:none;
-}
+      // Policies
+      const polEl = document.getElementById(nameKey + "-policies");
+      if (polEl && cottage.policies) {
+        polEl.innerText = cottage.policies;
+      }
 
-.slider img.active{
-display:block;
-}
+    });
 
-.tabs{
-display:flex;
-gap:30px;
-margin-top:30px;
-border-bottom:1px solid #eee;
-}
+  }
 
-.tabs button{
-background:none;
-border:none;
-padding:12px 0;
-cursor:pointer;
-font-weight:500;
-color:#2c2a28;
-}
+  loadCottages();
 
-.tabs button.active{
-border-bottom:3px solid #b76e79;
-color:#b76e79;
-}
-
-.tab-content{
-display:none;
-margin-top:25px;
-line-height:1.7;
-text-align:left;
-}
-
-.tab-content.active{
-display:block;
-}
-
-.btn{
-display:inline-block;
-margin-top:35px;
-padding:15px 40px;
-background:#b76e79;
-color:white;
-text-decoration:none;
-border-radius:40px;
-transition:0.3s;
-font-weight:500;
-}
-
-.btn:hover{
-background:#9d5c66;
-transform:scale(1.05);
-}
-
-.footer{
-background:#2c2a28;
-color:white;
-padding:60px 20px;
-text-align:center;
-margin-top:60px;
-}
-
-</
+});
+</script>
