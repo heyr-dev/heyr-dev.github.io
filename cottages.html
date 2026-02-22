@@ -1,6 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sakinn Stays | Cottages</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<style>
+
+body{
+margin:0;
+font-family:'Montserrat',sans-serif;
+background:#f6f1e8;
+color:#2c2a28;
+}
+
+.section{
+max-width:1100px;
+margin:auto;
+padding:100px 20px;
+}
+
+.section h1{
+font-family:'Playfair Display',serif;
+font-size:42px;
+text-align:center;
+margin-bottom:60px;
+}
+
+.cottage-card{
+background:white;
+margin-bottom:80px;
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 12px 35px rgba(0,0,0,0.08);
+}
+
+.cottage-image{
+width:100%;
+height:450px;
+object-fit:cover;
+}
+
+.cottage-content{
+padding:40px;
+}
+
+.cottage-content h2{
+font-family:'Playfair Display',serif;
+font-size:32px;
+margin-bottom:10px;
+}
+
+.price{
+color:#b76e79;
+font-weight:600;
+margin-bottom:20px;
+}
+
+.block{
+margin-top:25px;
+}
+
+.block h3{
+font-family:'Playfair Display',serif;
+font-size:20px;
+margin-bottom:10px;
+}
+
+.back-btn{
+display:inline-block;
+margin-top:60px;
+padding:14px 36px;
+border-radius:50px;
+background:#b76e79;
+color:white;
+text-decoration:none;
+transition:0.3s;
+}
+
+.back-btn:hover{
+background:#9d5c66;
+}
+
+@media(max-width:768px){
+.cottage-image{
+height:300px;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="section">
+<h1>Our Signature Cottages</h1>
+
+<div id="cottages-container"></div>
+
+<a href="index.html" class="back-btn">Back to Home</a>
+
+</div>
+
 <script>
+
 document.addEventListener("DOMContentLoaded", function () {
 
   const supabaseUrl = "https://vefjalqeomncvvklsvua.supabase.co";
@@ -19,42 +127,45 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    if (!data) return;
+    const container = document.getElementById("cottages-container");
+    container.innerHTML = "";
+
+    if (!data || data.length === 0) {
+      container.innerHTML = "<p>No cottages available.</p>";
+      return;
+    }
 
     data.forEach(function(cottage) {
 
-      if (!cottage.name) return;
+      container.innerHTML += `
+        <div class="cottage-card">
 
-      const nameKey = cottage.name
-        .toLowerCase()
-        .replace(/\s+/g, "")
-        .replace(/[^a-z0-9]/g, "");
+          <img src="${cottage.image_url || ''}" class="cottage-image">
 
-      const imageEl = document.getElementById(nameKey + "-image");
-      if (imageEl && cottage.image_url) {
-        imageEl.src = cottage.image_url;
-      }
+          <div class="cottage-content">
 
-      const descEl = document.getElementById(nameKey + "-description");
-      if (descEl && cottage.description) {
-        descEl.innerText = cottage.description;
-      }
+            <h2>${cottage.name || ''}</h2>
 
-      const priceEl = document.getElementById(nameKey + "-price");
-      if (priceEl && cottage.price) {
-        priceEl.innerText = "₹ " + cottage.price;
-      }
+            <div class="price">
+              ₹ ${cottage.price || ''}
+            </div>
 
-      const amenEl = document.getElementById(nameKey + "-amenities");
-      if (amenEl && cottage.amenities) {
-        amenEl.innerText = cottage.amenities;
-      }
+            <p>${cottage.description || ''}</p>
 
-      const polEl = document.getElementById(nameKey + "-policies");
-      if (polEl && cottage.policies) {
-        polEl.innerText = cottage.policies;
-      }
+            <div class="block">
+              <h3>Amenities</h3>
+              <p>${cottage.amenities || ''}</p>
+            </div>
 
+            <div class="block">
+              <h3>Policies</h3>
+              <p>${cottage.policies || ''}</p>
+            </div>
+
+          </div>
+
+        </div>
+      `;
     });
 
   }
@@ -62,4 +173,8 @@ document.addEventListener("DOMContentLoaded", function () {
   loadCottages();
 
 });
+
 </script>
+
+</body>
+</html>
