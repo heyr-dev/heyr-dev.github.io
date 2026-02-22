@@ -3,99 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cottages</title>
-
-<style>
-body {
-  margin:0;
-  background:#f6f1e8;
-  font-family: Arial, sans-serif;
-}
-.container {
-  max-width:1000px;
-  margin:auto;
-  padding:40px 20px;
-}
-.card {
-  background:white;
-  margin-bottom:40px;
-  padding:20px;
-  border-radius:10px;
-}
-.card img {
-  width:100%;
-  height:300px;
-  object-fit:cover;
-  border-radius:8px;
-}
-</style>
-
+<title>Sakinn Admin</title>
 </head>
 <body>
 
-<div class="container">
-<h1>Our Cottages</h1>
-<div id="cottages">Loading...</div>
-</div>
+<h2>Upload Cottage Images</h2>
+
+<select id="cottageSelect"></select>
+<br><br>
+
+<input type="file" id="imageInput" multiple>
+<br><br>
+
+<button id="uploadBtn">Upload</button>
+
+<p id="status"></p>
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
 <script>
-(async function(){
 
-try {
+document.addEventListener("DOMContentLoaded", async function () {
 
-if (!window.supabase) {
-  document.body.innerHTML = "<h2>Supabase library not loaded</h2>";
-  return;
-}
+  const supabase = window.supabase.createClient(
+    "https://vefjalqeomncvvklsvua.supabase.co",
+    "sb_publishable_mKFtccQH4bzZ_u7PCVY4CQ_n_RwW3-o"
+  );
 
-const supabase = window.supabase.createClient(
-  "https://vefjalqeomncvvklsvua.supabase.co",
-  "sb_publishable_mKFtccQH4bzZ_u7PCVY4CQ_n_RwW3-o"
-);
+  async function loadCottages() {
+    const { data, error } = await supabase
+      .from("cottages")
+      .select("*");
 
-const { data, error } = await supabase
-  .from("cottages")
-  .select("*");
+    if (error) {
+      document.getElementById("status").innerText = error.message;
+      return;
+    }
 
-if (error) {
-  document.body.innerHTML = "<h2>Supabase Error:</h2><pre>" + error.message + "</pre>";
-  return;
-}
+    const select = document.getElementById("cottageSelect");
+    select.innerHTML = "";
 
-if (!data) {
-  document.body.innerHTML = "<h2>No data returned</h2>";
-  return;
-}
+    data.forEach(c => {
+      const option = document.createElement("option");
+      option.value = c.id;
+      option.textContent = c.name;
+      select.appendChild(option);
+    });
+  }
 
-const container = document.getElementById("cottages");
-container.innerHTML = "";
+  async function uploadImage() {
 
-if (data.length === 0) {
-  container.innerHTML = "<p>No cottages found in database.</p>";
-  return;
-}
+    const files = document.getElementById("imageInput").files;
+    const cottageId = document.getElementById("cottageSelect").value;
 
-data.forEach(cottage => {
-  container.innerHTML += `
-    <div class="card">
-      <h2>${cottage.name || ""}</h2>
-      <img src="${cottage.image_url || ""}">
-      <p><strong>Price:</strong> ₹ ${cottage.price || ""}</p>
-      <p>${cottage.description || ""}</p>
-      <p><strong>Amenities:</strong> ${cottage.amenities || ""}</p>
-      <p><strong>Policies:</strong> ${cottage.policies || ""}</p>
-    </div>
-  `;
+    if (!files.length) {
+      alert("Select images first");
+      return;
+    }
+
+    for (let file of files) {
+
+      const fileName = Date.now() + "-" + file.name;
+
+      const { error } = await supabase.storage
+        .from("cottage-images")
+        .upload(fileName, file);
+
+      if (error) {
+        document.getElementById("status").innerText = error.message;
+        return;
+      }
+
+      const publicUrl =
+        "https://vefjalqeomncvvklsvua.supabase.co/storage/v1/object/public/cottage-images/" + fileName;
+
+      await supabase.from("cottage_images").insert({
+        cottage_id: cottageId,
+        image_url: publicUrl
+      });
+
+    }
+
+    document.getElementById("status").innerText = "Upload successful ✅";
+  }
+
+  document.getElementById("uploadBtn").addEventListener("click", uploadImage);
+
+  loadCottages();
+
 });
 
-} catch (e) {
-  document.body.innerHTML = "<h2>Unexpected Error:</h2><pre>" + e + "</pre>";
-}
-
-})();
 </script>
 
 </body>
 </html>
+
